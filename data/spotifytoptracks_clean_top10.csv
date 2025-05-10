@@ -1,0 +1,11 @@
+rank,artist,track_name,loudness,acousticness,speechiness,valence,tempo,genre
+1,The Weeknd,#1 Blinding Lights,-5.934,0.00146,0.0598,0.334,171.005,R&B/Soul
+2,Tones And I,#2 Dance Monkey,-6.401,0.688,0.0988,0.54,98.078,Alternative/Indie
+3,Roddy Ricch,#3 The Box,-6.687,0.104,0.0559,0.642,116.971,Hip-Hop/Rap
+4,SAINt JHN,#4 Roses - Imanbek Remix,-5.457,0.0149,0.0506,0.894,121.962,Dance/Electronic
+5,Dua Lipa,#5 Don't Start Now,-4.521,0.0123,0.083,0.679,123.95,Nu-disco
+6,DaBaby,#6 ROCKSTAR (feat. Roddy Ricch),-7.956,0.247,0.164,0.497,89.977,Hip-Hop/Rap
+7,Harry Styles,#7 Watermelon Sugar,-4.209,0.122,0.0465,0.557,95.39,Pop
+8,Powfu,#8 death bed (coffee for your head),-8.765,0.731,0.135,0.348,144.026,Hip-Hop/Rap
+9,Trevor Daniel,#9 Falling,-8.756,0.123,0.0364,0.236,127.087,R&B/Hip-Hop alternative
+10,Lewis Capaldi,#10 Someone You Loved,-5.679,0.751,0.0319,0.446,109.891,Alternative/Indie

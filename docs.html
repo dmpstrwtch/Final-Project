@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Documentation — Spotify Top 10 Tracks of 2020 Viz</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* light styling for docs page */
+    body { 
+      max-width: 800px; 
+      margin: 60px auto; 
+      font-family: "Inter", sans-serif; 
+      line-height: 1.6; 
+      color: #333; 
+      padding: 0 20px;
+    }
+    h1, h2, h3 { color: #1A6E4C; }
+    img.sketch { 
+      display: block;           /* each on its own “row” */
+      margin: 20px auto;        /* vertical space + auto-center */
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .screenshot { 
+      width: 100%; 
+      max-width: 600px; 
+      margin: 10px 0; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    iframe { border: none; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Title & Overview -->
+  <h1>Interactive D3 — Spotify Top 10 Tracks of 2020</h1>
+  <p><strong>Overview:</strong> Interactive D3 chart of Spotify’s top 10 tracks by various audio features (tempo, loudness, acousticness, speechiness &amp; valence).</p>
+
+  <!-- 2. Design Process -->
+  <h2>Design Process</h2>
+  <h3>Question</h3>
+  <p>How do the top 10 Spotify tracks of 2020 vary in tempo, loudness, acousticness, speechiness, and valence?</p>
+
+  <h3>Wireframe Sketches</h3>
+  <p>I explored a few layouts and these were my top three wireframes:</p>
+  <img src="sketch1.png" alt="Wireframe Sketch 1" class="sketch" />
+  <img src="sketch2.png" alt="Wireframe Sketch 2" class="sketch" />
+  <img src="sketch3.png" alt="Wireframe Sketch 3" class="sketch" />
+
+  <h3>Iteration</h3>
+  <p>After testing small multiples and panel views, I chose a single‐chart with a dropdown selector to keep the interface clean and focus attention on one metric at a time.</p>
+
+  <!-- 3. Implementation Details -->
+  <h2>Implementation Details</h2>
+  <ul>
+    <li><strong>Data Loading:</strong> Used <code>d3.csv("data/…csv", d3.autoType)</code> to load and auto‐parse types.</li>
+    <li><strong>Scales &amp; Axes:</strong> margin convention of 80/20/100/70, <code>scaleBand</code> for X and <code>scaleLinear</code> for Y; dynamic domain (<code>d3.extent</code>) to handle negative loudness.</li>
+    <li><strong>Interactivity:</strong>
+      <ul>
+        <li>Dropdown menu to switch metrics.</li>
+        <li>Mouseover tooltips showing track, artist, genre and value with units.</li>
+        <li>Smooth <code>.transition().duration(800)</code> on metric change.</li>
+      </ul>
+    </li>
+    <li><strong>Styling:</strong>
+      <ul>
+        <li>Green palette <code>#3A6E4C</code> + mint hover <code>#1AD65F</code>.</li>
+        <li>Container card via CSS (<code>#chart { max-width:900px; margin:auto; }</code>).</li>
+      </ul>
+    </li>
+  </ul>
+
+   <!-- 4. Findings & Insights -->
+  <h2>Findings &amp; Insights</h2>
+
+  <!-- Tempo -->
+  <h3>Tempo (BPM)</h3>
+  <img src="Tempo.png" alt="Tempo screenshot" class="screenshot" />
+  <ul>
+    <li><strong>#1 Blinding Lights</strong> leads with a high tempo of <strong>171 BPM</strong> — nearly double <strong>#10 Someone You Loved</strong>.</li>
+    <li>The top 3 tracks (<strong>#1 Blinding Lights</strong>, <strong>#2 Dance Monkey</strong> and <strong>#3 The Box</strong>) all exceed <strong>115 BPM</strong>. This suggests dance-floor music is listened to the most.</li>
+  </ul>
+
+  <!-- Loudness -->
+  <h3>Loudness (dB)</h3>
+  <img src="Loudness.png" alt="Loudness screenshot" class="screenshot" />
+  <ul>
+    <li><strong>#8 death bed (coffee for your head)</strong> and <strong>#9 Falling</strong> both clock in at <strong>–8.8 dB</strong>, the softest songs. This reflects more subdued production.</li>
+    <li><strong>#7 Watermelon Sugar</strong> is the loudest at <strong>–4.5 dB</strong>, making it the most energetic song. It shows that being the loudest doesn’t equate to being the most popular.</li>
+  </ul>
+
+  <!-- Acousticness -->
+  <h3>Acousticness</h3>
+  <img src="Acousticness.png" alt="Acousticness screenshot" class="screenshot" />
+  <ul>
+    <li><strong>#10 Someone You Loved</strong> ranked highest in acousticness (<strong>75.1 %</strong>), suggesting a more unplugged sound.</li>
+    <li><strong>#1 Blinding Lights</strong> sits near <strong>0 %</strong>, with <strong>#4 Roses – Imanbek Remix</strong> and <strong>#5 Don’t Start Now</strong> right above it—confirming their heavily produced, electronic style.</li>
+  </ul>
+
+  <!-- Speechiness -->
+  <h3>Speechiness</h3>
+  <img src="Speechiness.png" alt="Speechiness screenshot" class="screenshot" />
+  <ul>
+    <li><strong>#6 ROCKSTAR (feat. Roddy Ricch)</strong> and <strong>#8 death bed (coffee for your head)</strong> have the highest speechiness (<strong>16.4 %</strong> &amp; <strong>13.5 %</strong>), indicative of their Hip-Hop/Rap genre.</li>
+    <li><strong>#5 Don’t Start Now</strong> and <strong>#10 Someone You Loved</strong> fall below <strong>4 %</strong>, showing more melodic vocal delivery.</li>
+  </ul>
+
+  <!-- Valence -->
+  <h3>Valence</h3>
+  <img src="Valence.png" alt="Valence screenshot" class="screenshot" />
+  <ul>
+    <li><strong>#4 Roses – Imanbek Remix</strong> and <strong>#5 Don’t Start Now</strong> top out around <strong>0.68–0.89</strong> valence, feeling the happiest—reflecting the upbeat Dance/Electronic and Nu-Disco vibe.</li>
+    <li><strong>#9 Falling</strong> is the lowest (<strong>0.23</strong>), indicative of its melancholic tone. It shows that even sad songs can make the top 10.</li>
+  </ul>
+
+  <!-- 5. Usage & Controls -->
+  <h2>Usage &amp; Controls</h2>
+  <p>
+    <strong>Metric selector:</strong> Choose one of Tempo (BPM), Loudness (dB), Acousticness, Speechiness, Valence.<br/>
+    <strong>Tooltip:</strong> Hover over a bar to see <em>track name</em>, <em>artist</em>, <em>genre</em> and the selected metric (with units).
+  </p>
+
+  <!-- 6. Video -->
+  <h2>Video Walkthrough</h2>
+  <iframe src="https://www.youtube.com/embed/<YOUR_VIDEO_ID>"
+          title="Screencast: Spotify Top 10 Viz"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+
+  <!-- Back link -->
+  <footer style="text-align:center; margin:40px 0;">
+    <a href="index.html" style="font-family:Inter, sans-serif; color:#1A6E4C; text-decoration:none;">
+      ← Back to Visualization
+    </a>
+  </footer>
+  
+</body>
+</html>
